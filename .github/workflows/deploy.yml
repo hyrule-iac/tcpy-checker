@@ -1,0 +1,70 @@
+# Deploy TCP Checker to Docker Image
+name: TCP-Checker to Docker image
+
+# Trigger
+on: 
+    push
+        branches: ["master"]
+    tags:
+        - "v*"
+    workflow_dispatch:
+
+# Jobs
+
+jobs:
+    devsecops-build:
+        runs-on: LocalAgent
+
+        steps:
+            - name : Repo Checkout
+              uses : actions/Checkout@v4
+              
+# 1--- Installing Python
+            - name : Set Up Python
+              uses : actions/setup-python@v5
+              with :
+                python-version: "3.11"
+
+# 2--- Installing Flake8 Dependencies
+            - name : Installing dependencies
+              run: |
+                pip install -r requirements.txt
+                pip install flake8 bandit pip-audit pytest
+
+# 3--- Linting (flake8)
+            - name : Run Flake8
+              run : |
+                flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+                flake8 . --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
+
+# 4--- Static Analysis (Bandit)
+
+            - name : Run Bandit
+              run : |
+                bandit -r . -ll
+
+# 5--- SCA Running (pip audit)
+            - name : Run PIP AUDIT (SCA)
+              run : |
+                pip-audit
+# 6--- Unit Test
+            - name : Test Units
+              run: |
+                pytest -q
+
+#7--- Login to GHCR
+            - name : Login to GitHub Container Registry
+              uses : docker/login-action@v3
+              with : 
+                registry : ghcr.io
+                username : ${{ github.actor}}
+                password : ${{ secrets.GITHUB_TOKEN}}
+
+#8--- Push dockerized image to registry
+            - name : Push docker image to GHCR
+              run : |
+                docker push ghrc.io/${{ github.repository_owner }}/tcp-checker:latest
+
+
+#9---
+#10--
