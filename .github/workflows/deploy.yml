@@ -64,7 +64,3 @@ jobs:
             - name : Push docker image to GHCR
               run : |
                 docker push ghrc.io/${{ github.repository_owner }}/tcp-checker:latest
-
-
-#9---
-#10--
