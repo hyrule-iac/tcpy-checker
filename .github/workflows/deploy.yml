@@ -3,10 +3,10 @@ name: TCP-Checker to Docker image
 
 # Trigger
 on: 
-    push
+    push:
         branches: ["master"]
-    tags:
-        - "v*"
+        tags:
+            - "v*"
     workflow_dispatch:
 
 # Jobs
