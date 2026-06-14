@@ -1,0 +1,47 @@
+[
+    {
+        "server": {
+            "name": "Local Server",
+            "ip": "192.168.2.233",
+            "port": 53,
+            "service": "DNS"
+        },
+        "success": false,
+        "latency_ms": null,
+        "attempts": 3,
+        "error_type": "ConnectionRefusedError",
+        "error_message": "[WinError 1225] The remote computer refused the network connection",
+        "timestamp": "2026-06-14T15:54:07.667388+00:00",
+        "source_host": null
+    },
+    {
+        "server": {
+            "name": "Ghost Server",
+            "ip": "7.7.7.7",
+            "port": 53,
+            "service": "DNS"
+        },
+        "success": false,
+        "latency_ms": null,
+        "attempts": 3,
+        "error_type": "TimeoutError",
+        "error_message": "Connection timed out after 3s",
+        "timestamp": "2026-06-14T15:54:07.667388+00:00",
+        "source_host": null
+    },
+    {
+        "server": {
+            "name": "Ghost Server3",
+            "ip": "10.10.10.10",
+            "port": 53,
+            "service": "DNS"
+        },
+        "success": false,
+        "latency_ms": null,
+        "attempts": 3,
+        "error_type": "TimeoutError",
+        "error_message": "Connection timed out after 3s",
+        "timestamp": "2026-06-14T15:54:07.667388+00:00",
+        "source_host": null
+    }
+]

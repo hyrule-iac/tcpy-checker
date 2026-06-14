@@ -1,0 +1,39 @@
+[
+    {
+        "name":"Google DNS",
+        "ip":"8.8.8.8",
+        "port":"53",
+        "service":"DNS"
+    },
+    {
+        "name": "Cloudflare DNS",
+        "ip": "1.1.1.1",
+        "port":"53",
+        "service":"DNS"
+    },
+    {
+        "name": "Local Server",
+        "ip": "192.168.2.233",
+        "port":"53",
+        "service":"DNS"
+
+    },
+    {
+        "name": "Ghost Server",
+        "ip": "7.7.7.7",
+        "port":"53",
+        "service":"DNS"
+    },
+    {
+        "name": "Ghost Server2",
+        "ip": "9.9.9.9",
+        "port":"53",
+        "service":"DNS"
+    },
+        {
+        "name": "Ghost Server3",
+        "ip": "10.10.10.10",
+        "port":"53",
+        "service":"DNS"
+    }
+]

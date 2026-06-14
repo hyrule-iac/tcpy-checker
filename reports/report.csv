@@ -1,0 +1,4 @@
+name,ip,port,service,success,latency_ms,attempts,error_type,error_message,timestamp,source_host
+Local Server,192.168.2.233,53,DNS,False,,3,ConnectionRefusedError,[WinError 1225] The remote computer refused the network connection,2026-06-14T15:54:07.667388+00:00,
+Ghost Server,7.7.7.7,53,DNS,False,,3,TimeoutError,Connection timed out after 3s,2026-06-14T15:54:07.667388+00:00,
+Ghost Server3,10.10.10.10,53,DNS,False,,3,TimeoutError,Connection timed out after 3s,2026-06-14T15:54:07.667388+00:00,
