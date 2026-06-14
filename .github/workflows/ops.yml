@@ -1,0 +1,33 @@
+# Hourly run task 
+name: Hourly TCP Check on Windows
+on:
+    schedule:
+        - cron: "0 * * * *"
+    workflow_dispatch:
+
+jobs:
+    run-checker:
+        runs-on: LocalAgent
+
+        # Log into GHCR repos
+        steps:
+            - name : Login to GHCR
+              uses : docker/login-actions@v3
+              with:
+                registry: ghcr.io
+                username : ${{ github.actor }}
+                password : ${{ secrets.GITHUB_TOKEN }}
+        # Get dockerized image
+            - name : Pull docker image
+              run: | 
+                docker pull ghcr.io/${{ github.repository_owner}}/tcp-checker:latest
+        # Execute program
+            - name : Execute TCP-checker
+              run : |
+                docker run --rm -v "${{ github.workspace}}"\reports:/app/reports" ghcr.io
+
+            - name : Upload reports
+              uses : actions/upload-artifact@v4
+              with:
+                name : tcp-checker-reports
+                path: reports
