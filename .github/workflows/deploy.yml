@@ -44,14 +44,10 @@ jobs:
                 bandit -r . -ll
 
 # 5--- SCA Running (Black Duck)
-            - name : Black Duck Scan
-              uses : synopsys-sig/synopsys-action@v1
-              with:
-                blackduck_url: ${{ secrets.BLACKDUCK_URL }}
-                blackduck_api_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
-                scan_mode: intelligent
-                project_name: "tcp-checker"
-                project_version: "latest"
+            - name : Run pip-scan (SCA)
+              run : |
+                pip-install pip-scan
+                pip-scan --requirement requirements.txt --vulnerable     
 # 6--- Unit Test
             - name : Test Units
               run: |
