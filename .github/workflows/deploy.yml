@@ -37,16 +37,21 @@ jobs:
                 flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
                 flake8 . --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
 
-# 4--- Static Analysis (Bandit)
+# 4--- Static Analysis (Black Duck)
 
             - name : Run Bandit
               run : |
                 bandit -r . -ll
 
-# 5--- SCA Running (pip audit)
-            - name : Run PIP AUDIT (SCA)
-              run : |
-                pip-audit
+# 5--- SCA Running (Black Duck)
+            - name : Black Duck Scan
+              uses : synopsys-sig/synopsys-action@v1
+              with:
+                blackduck_url: ${{ secrets.BLACKDUCK_URL }}
+                blackduck_api_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
+                scan_mode: intelligent
+                project_name: "tcp-checker"
+                project_version: "latest"
 # 6--- Unit Test
             - name : Test Units
               run: |

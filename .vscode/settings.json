@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "hyrule-iac",
+        "projectKey": "hyrule-iac_tcpy-checker"
+    }
+}
